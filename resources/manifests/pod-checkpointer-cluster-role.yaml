@@ -9,3 +9,14 @@ rules:
       - nodes/proxy
     verbs:
       - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-checkpointer-psp
+rules:
+  - apiGroups: ['policy']
+    resources: ['podsecuritypolicies']
+    verbs:     ['use']
+    resourceNames:
+    - pod-checkpointer-restricted
